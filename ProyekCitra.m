@@ -276,7 +276,7 @@ if (popvalue == 1)
     
     axes(handles.axes5)
     cla('reset')
-    h = histogram(gray(:),256);
+    h = histogram(roberts(:),256);
     h = [1 0; 0 -1];
     h = [0 1; -1 0];
    
@@ -293,7 +293,9 @@ elseif(popvalue == 2)
     
     axes(handles.axes5)
     cla('reset')
-    imhist(canny);
+    h = histogram(canny(:),256);
+    h = [1 0; 0 -1];
+    h = [0 1; -1 0];
     
     
 elseif(popvalue == 3)
@@ -308,7 +310,7 @@ elseif(popvalue == 3)
     axes(handles.axes5)
     cla('reset')
     imhist(prewitt);
-    h = histogram(gray(:),256);
+    h = histogram(prewitt(:),256);
     h = [-1 0 1; -1 0 1; -1 0 1];
     h = [-1 -1 -1; 0 0 0; 1 1 1];
     
@@ -455,6 +457,21 @@ axes(handles.axes3);
 cla('reset');
 imshow(Img);
 
+red = Img(:,:,1); % Red channel
+green = Img(:,:,2); % Green channel
+blue = Img(:,:,3); % Blue channel
+axes(handles.axes5);
+h = histogram(red(:),256);
+h.FaceColor = [1 0 0];
+h.EdgeColor = 'r';
+hold on;
+h = histogram(green(:),256);
+h.FaceColor = [0 1 0];
+h.EdgeColor = 'g';
+h = histogram(blue(:),256);
+h.FaceColor = [0 0 1];
+h.EdgeColor = 'b';
+
 global G;
 G = Img;
 
@@ -479,6 +496,21 @@ Img = flip(Img, 1); % mirror vertical
 axes(handles.axes3);
 cla('reset');
 imshow(Img);
+
+red = Img(:,:,1); % Red channel
+green = Img(:,:,2); % Green channel
+blue = Img(:,:,3); % Blue channel
+axes(handles.axes5);
+h = histogram(red(:),256);
+h.FaceColor = [1 0 0];
+h.EdgeColor = 'r';
+hold on;
+h = histogram(green(:),256);
+h.FaceColor = [0 1 0];
+h.EdgeColor = 'g';
+h = histogram(blue(:),256);
+h.FaceColor = [0 0 1];
+h.EdgeColor = 'b';
 
 global G;
 G = Img;
